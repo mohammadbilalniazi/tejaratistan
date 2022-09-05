@@ -18,7 +18,7 @@ from django.urls import path
 from shopapp import views,views_roznamcha,views_selling,views_purchase
 from products import views as product_view
 from user_requests import request_views
-from qrapp import views_qr 
+# from qrapp import views_qr 
     
 urlpatterns = [
     path('admin/shopapp/roznamcha/add/',views_roznamcha.roznamcha_form,name='roznamcha_form'), 
@@ -30,8 +30,8 @@ urlpatterns = [
     path('purchase_bill/detail/<purchase_bill_id>/',views_purchase.purchase_show),
 
     path('products/<id>/',product_view.show,name='product_show'),
-    path('qrapp/qr_generater/',views_qr.qr_generater),
-    path('qrapp/qr_reader/',views_qr.qr_reader),
+#     path('qrapp/qr_generater/',views_qr.qr_generater),
+#     path('qrapp/qr_reader/',views_qr.qr_reader),
     path('requests_user/request/save/',request_views.request),
     path('admin/', admin.site.urls),
 
