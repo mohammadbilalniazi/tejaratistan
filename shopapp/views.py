@@ -10,7 +10,7 @@ from django.contrib import messages
 from datetime import datetime
 
 
-@login_required(login_url='/admin')
+#@login_required(login_url='/admin')
 def index(request):
     template=loader.get_template('index.html') 
     return HttpResponse(template.render())
