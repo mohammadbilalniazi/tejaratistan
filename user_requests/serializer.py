@@ -17,8 +17,8 @@ class RequestSerializer(serializers.ModelSerializer):
     services_set = ServicesSerializer(many=True)
     class Meta:
         model=Request
-        fields=["id","services_set","requester_name","requester_email"] #month===> kaifyath_haziri
-        fields='__all__'
+        fields=["id","services_set","requester_name","requester_email","requester_contact"] #month===> kaifyath_haziri #month===> kaifyath_haziri
+        #fields='__all__'
         # requester_name=models.CharField(max_length=30)
         # requester_email
     def create(self, validated_data):
