@@ -35,7 +35,7 @@ class ServicesAdmin(admin.ModelAdmin):
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
     #list_display=get_model_fields(Request)
-    list_display =("requester_name","requester_email","get_requests")
+    list_display =("requester_name","requester_email","requester_contact","get_requests")
     
     def get_requests(self,obj):
         obj=obj.services_set.all().values_list("service",flat=True)
