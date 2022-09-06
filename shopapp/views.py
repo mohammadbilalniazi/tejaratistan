@@ -28,7 +28,7 @@ def bank_users(request):
         outputs+="<h1>"+member["firstname"]+" "+"</h1>"
     return HttpResponse(outputs)'''  
 
-def update_bank_user_form(request,id):
+def update_bank_user_form(request,id): 
     template=loader.get_template('update_bank_users.html')
     member=Members.objects.get(id=id)
     
