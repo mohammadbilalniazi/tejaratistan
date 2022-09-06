@@ -241,6 +241,10 @@
                     <input id="email" type="email" spellcheck="false">
                     <label for="email">Email</label>
                   </div>
+                  <div class="information-email">
+                    <input id="contact" type="text" spellcheck="false">
+                    <label for="email">Contact</label>
+                  </div>
                 </div>
                 <input type="submit" value="Send Request" id="submit_form">
               </form>
@@ -271,7 +275,9 @@
                       e.preventDefault();
                       
                       user_name=document.getElementById("user_name");
-                      email=document.getElementById("email")
+                      email=document.getElementById("email");
+                      contact=document.getElementById("contact");
+
                       const list_services=[]
 
                       for(i=1; i<=6; i++){
@@ -287,10 +293,18 @@
                         }
                       //console.log("1=>",id_1.checked," 2=>",id_2.checked," 3=>",id_3.checked,"4=>",id_4.checked," 5=>",id_5.checked," 6=>",id_6.checked)
                       }
-
+                      if(email.value==""){
+                        alert("please fill email");
+                        return ;
+                      }
+                      if(list_services.length==0){
+                        alert("please select any service");
+                        return ;
+                      }
                       user_request_obj={
                         "requester_name":user_name.value,
                         "requester_email":email.value,
+                        "requester_contact":contact.value,
                         "services_set":list_services
                       }
 
@@ -307,7 +321,10 @@
                           console.log("response.status=",response.status);
                               success=document.getElementById("success");
                               //success.innerHTML=response.json();
-                              alert(response.json());
+                              //alert(response.status);
+                              if(response.status==201){
+                                alert("Thanks");
+                              }
                       })
                        .then(data => {console.log("data=",data);
                        })
