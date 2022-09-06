@@ -19,7 +19,11 @@ from django.contrib.auth.decorators import login_required,permission_required
 from rest_framework.decorators import api_view
 from django.conf import settings
 from django.core.mail import send_mail
+import re
 
+def clean(st):
+    pattern="[\n\t\s]"
+    return re.sub(pattern,"",st)
 
 @login_required(login_url='/')
 #@permission_required('hawala.add_kitabkhana',login_url='/admin')
@@ -36,12 +40,14 @@ def request(request):
             print("serializer.validated_data=",serializer.validated_data)
             serializer.save()
             subject="السلام علیکم"
-            from_email=settings.EMAIL_HOST_USER
+            #from_email=settings.EMAIL_HOST_USER
+            sender=settings.EMAIL_HOST_USER
             recipient_list=[request.data['requester_email'],]
+            recipient=[clean(request.data['requester_email'])]
             message="Dear Requester. Kindly wait untill we call you for interview"
             try:
-                send_mail(subject=subject,message=message,from_email=from_email,recipient_list=recipient_list)
-            
+                #send_mail(subject=subject,message=message,from_email=from_email,recipient_list=recipient_list)
+                send_mail(subject, message, sender, recipient)
             except Exception as e:
                 log_obj=Log(log_type='exception',logger=request.user.username,log_table='controller',log_detail=e,log_date=date2jalali(datetime.strptime(datetime.now().strftime('%Y-%m-%d'),"%Y-%m-%d") ) )
                 log_obj.save()
