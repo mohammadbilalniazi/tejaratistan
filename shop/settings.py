@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shopapp',
     'products',
+    'expenditure',
     'user_requests',
     'qrapp',
 ]
