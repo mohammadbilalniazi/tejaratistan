@@ -18,6 +18,7 @@ from django.urls import path
 from shopapp import views,views_roznamcha,views_selling,views_purchase
 from products import views as product_view
 from user_requests import request_views
+from chat import views as views_chat
 # from qrapp import views_qr 
     
 urlpatterns = [
@@ -28,10 +29,15 @@ urlpatterns = [
     path('admin/shopapp/purchase_bill/add/',views_purchase.purchase_bill_form,name="purchase_bill_form"),
     path('admin/shopapp/purchase_bill/',views_purchase.purchase_show),
     path('purchase_bill/detail/<purchase_bill_id>/',views_purchase.purchase_show),
-
     path('products/<id>/',product_view.show,name='product_show'),
-#     path('qrapp/qr_generater/',views_qr.qr_generater),
-#     path('qrapp/qr_reader/',views_qr.qr_reader),
+    path('chat/home/',views_chat.home),
+    path('chat/send/',views_chat.send,name='send'),
+    path('chat/getMessages/<room_id>/',views_chat.getMessage,name='get_message'),
+    path('chat/room/<str:room>/',views_chat.room,name='room'),
+    
+    path('chat/checkview/',views_chat.checkview,name='checkview'),
+    # path('qrapp/qr_generater/',views_qr.qr_generater),
+    # path('qrapp/qr_reader/',views_qr.qr_reader),
     path('requests_user/request/save/',request_views.request),
     path('admin/', admin.site.urls),
 

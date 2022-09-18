@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'expenditure',
     'user_requests',
     'qrapp',
+    'chat',
 ]
 
 MIDDLEWARE = [
