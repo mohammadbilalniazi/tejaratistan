@@ -5,7 +5,7 @@ from django.utils import timezone
 class Room(models.Model):
     name=models.CharField(max_length=100,unique=True)
     creator=models.CharField(null=True,blank=True,default=None,max_length=25)
-    date_time=models.DateTimeField(default=timezone.now,null=True,blank=True)
+    date_time=models.DateTimeField(null=True,blank=True)
     status=models.SmallIntegerField(default=1,choices=((1,'OPEN'),(2,'CLOSED'),(3,'CANCELED'),(4,'SUSPENDED')))
 
     # class Meta:
@@ -13,7 +13,7 @@ class Room(models.Model):
 
 class Message(models.Model):
     value=models.CharField(max_length=1000) #message
-    date=models.DateTimeField(default=datetime.now,blank=True)
+    date=models.DateTimeField(blank=True)
     user=models.CharField(max_length=100) ######sender
     room=models.CharField(max_length=100)
     ##################new################

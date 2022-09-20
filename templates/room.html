@@ -72,11 +72,16 @@ body {
 $(document).ready(function(){
 
 setInterval(function(){
+  //console.log("room_name=");
+    url="/chat/getMessages/{{room_name}}/";
+    //console.log(url)
     $.ajax({
+        
         type: 'GET',
-        url : "/chat/getMessages/{{room}}/",
+        url :url,
         success: function(response){
-            console.log(response);
+            //console.log("test "+response);
+            //console.log("Objects.keys(response) ",Object.keys(response))
             $("#display").empty();
             for (var key in response.messages)
             {

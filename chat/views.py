@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import JsonResponse
-# Create your views here.
+# Create your views here.'
+from datetime import datetime
 from chat.models import Room,Message
+from django.utils import timezone
 
 def home(request):
     return render(request,'home.html')
@@ -20,11 +22,12 @@ def room(request,room_id):
 def checkview(request):
     room=request.POST['room_name']
     username=request.POST['username']
-
-    if Room.objects.filter(name=room).exists():
-        return redirect('/chat/room/'+room+'/?username='+username)
+    room_query=Room.objects.filter(name=room)
+    if room_query.exists():
+        room_obj=room_query[0]
+        return redirect('/chat/room/'+str(room_obj.id)+'/?username='+username)
     else:
-        new_room=Room.objects.create(name=room)
+        new_room=Room.objects.create(name=room,creator=request.user.username,date_time=datetime.now(timezone.utc))
         new_room.save()
         return redirect('/chat/room/'+str(new_room.id)+'/?username='+username)
 
@@ -33,12 +36,16 @@ def send(request):
     message=request.POST['message']
     username=request.POST['username']
     room_id=request.POST['room_id']
-    new_message=Message.objects.create(value=message,user=username,room=room_id)
+    room_obj=Room.objects.get(id=int(room_id))
+    print("send message=",message," username ",username," room_obj ",room_obj)
+    new_message=Message.objects.create(value=message,user=username,room=room_obj,date=datetime.now(timezone.utc))
     new_message.save()
     return HttpResponse('Message sent successfully')
 
 def getMessage(request,room):
-    room_details=Room.objects.get(name=room)
-    messages=Message.objects.filter(room=room_details.id)
+    room_obj=Room.objects.get(name=room)
+    messages=Message.objects.filter(room=room_obj)
     # print("messages=",messages)
-    return JsonResponse({"message":list(messages.values())})
+    
+    print("get message=",messages," username ",messages[0].user," room_obj ",room_obj)
+    return JsonResponse({"messages":list(messages.values())})

@@ -32,8 +32,8 @@ urlpatterns = [
     path('products/<id>/',product_view.show,name='product_show'),
     path('chat/home/',views_chat.home),
     path('chat/send/',views_chat.send,name='send'),
-    path('chat/getMessages/<room_id>/',views_chat.getMessage,name='get_message'),
-    path('chat/room/<str:room>/',views_chat.room,name='room'),
+    path('chat/getMessages/<room>/',views_chat.getMessage,name='get_message'),
+    path('chat/room/<str:room_id>/',views_chat.room,name='room'),
     
     path('chat/checkview/',views_chat.checkview,name='checkview'),
     # path('qrapp/qr_generater/',views_qr.qr_generater),
