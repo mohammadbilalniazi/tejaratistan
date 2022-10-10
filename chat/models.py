@@ -8,6 +8,9 @@ class Room(models.Model):
     date_time=models.DateTimeField(null=True,blank=True)
     status=models.SmallIntegerField(default=1,choices=((1,'OPEN'),(2,'CLOSED'),(3,'CANCELED'),(4,'SUSPENDED')))
 
+    def __str__(self):
+        return self.name
+
     # class Meta:
     #     unique_together=(("nawa_sanad","year_hawala","hawala_no","mudeeriath","nawyath_sanad"),)
 
@@ -19,7 +22,8 @@ class Message(models.Model):
     ##################new################
     replied_to=models.IntegerField(null=True,blank=True,default=None)
     room=models.ForeignKey(Room,null=True,blank=True,on_delete=models.CASCADE)
-
+    def __str__(self):
+        return self.value
 
 
 # class Message(models.Model):

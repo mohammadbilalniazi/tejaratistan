@@ -80,37 +80,6 @@ class Log(models.Model):
 
 
 
-
-class Purchase_bill(models.Model):
-    payment=models.IntegerField()
-    purchasing_date=models.DateField()
-    purchaser=models.ForeignKey(User,on_delete=models.DO_NOTHING,max_length=30)
-    seller=models.CharField(max_length=30,null=True,blank=True)
-    discount=models.IntegerField(default=0)  
-    total_purchase_bill=models.IntegerField()
-    
-    verbose_name_plural = "Purchasing Bill"
-    
-    def __str__(self):
-        return f"{self.id}"
- 
-
- 
-class Purchase_detail(models.Model):
-    purchase_bill=models.ForeignKey(Purchase_bill,on_delete=models.CASCADE)
-    product=models.ForeignKey(Product,on_delete=models.DO_NOTHING,null=False, blank=False)
-    item_amount = models.IntegerField()
-    item_price=models.IntegerField()
-    return_qty=models.IntegerField(null=True,blank=True)      
-    def __str__(self):
-        return f"{self.id}"
-    
-    verbose_name_plural = "Purchase detail"
-
-
-
-
-
 class Sale_bill(models.Model):        #sale_bill = sale_detail
     payment=models.IntegerField()
     sale_date=models.DateField()
@@ -145,7 +114,7 @@ class Roznamcha(models.Model):
     def __str__(self):
         return f"{self.detail}"
     
-    verbose_name_plural = "Journal"
+    verbose_name_plural = "Journal Voucher"
 
 
 class Asset(models.Model):

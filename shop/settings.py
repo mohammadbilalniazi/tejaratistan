@@ -15,6 +15,7 @@ import django_heroku
 import dj_database_url
 from decouple import config
 import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -46,6 +47,10 @@ INSTALLED_APPS = [
     'user_requests',
     'qrapp',
     'chat',
+    'purchase',
+    'user',
+    'rest_framework',
+     'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'shop.urls'
@@ -78,6 +84,26 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'shop.wsgi.application'
+
+
+# from corsheaders.defaults import default_headers
+
+# CORS_ALLOW_HEADERS = default_headers + (
+#     'Access-Control-Allow-Origin',
+# )
+
+CORS_ALLOWED_ORIGINS = [
+    "https://tejaratistan.com",
+    "https://sub.example.com",
+    "http://localhost:5000",
+    "http://127.0.0.1:5000",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:2000"
+]
+
+
+
+
 
 
 # Database

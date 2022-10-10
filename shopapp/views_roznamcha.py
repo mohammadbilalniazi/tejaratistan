@@ -3,7 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
 from django.template import loader 
 from django.contrib.auth.decorators import login_required
-from shopapp.models import Customer, Supplier , Supplier_Ledger , Customer_Ledger , Log ,Purchase_bill, Purchase_detail,Sale_bill,Sales_detail,Roznamcha,Asset
+from shopapp.models import Customer, Supplier , Supplier_Ledger , Customer_Ledger , Log ,Sale_bill,Sales_detail,Roznamcha,Asset
 from products.models import Product
 from django.contrib.auth.models import User
 from datetime import datetime

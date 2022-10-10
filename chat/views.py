@@ -9,19 +9,22 @@ from chat.models import Room,Message
 from django.utils import timezone
 
 def home(request):
-    return render(request,'home.html')
+    context={"rooms":Room.objects.all()}
+    return render(request,'home.html',context)
 
 def room(request,room_id):
     username=request.GET.get("username")
     print("username=",username)
-    room_details_obj=Room.objects.get(id=room_id)
+    room_details_obj=Room.objects.get(id=str(room_id))
     context={'username':username,'room_name':room_details_obj.name,'room_details':room_details_obj}
     print("context=",context)
     return render(request,'room.html',context)
     
 def checkview(request):
     room=request.POST['room_name']
-    username=request.POST['username']
+    username=request.POST.get('username',None)
+    if username=="" or username==None:
+        username=request.user.username
     room_query=Room.objects.filter(name=room)
     if room_query.exists():
         room_obj=room_query[0]
@@ -43,9 +46,15 @@ def send(request):
     return HttpResponse('Message sent successfully')
 
 def getMessage(request,room):
-    room_obj=Room.objects.get(name=room)
-    messages=Message.objects.filter(room=room_obj)
+    print("")
+    try:
+        room_obj=Room.objects.get(name=room)
+        messages=Message.objects.filter(room=room_obj)
+        messages_values=list(messages.values())
+    except:
+        print("$$$$$$$Exception first Room ")
+        messages_values=["No Message","No Message"]
     # print("messages=",messages)
     
-    print("get message=",messages," username ",messages[0].user," room_obj ",room_obj)
-    return JsonResponse({"messages":list(messages.values())})
+    #print("get message=",messages," username ",messages[0].user," room_obj ",room_obj)
+    return JsonResponse({"messages":messages_values})
