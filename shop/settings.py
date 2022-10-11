@@ -94,6 +94,7 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 
 CORS_ALLOWED_ORIGINS = [
     "https://tejaratistan.com",
+    "https://tejaratistan.herokuapp.com",
     "https://sub.example.com",
     "http://localhost:5000",
     "http://127.0.0.1:5000",
