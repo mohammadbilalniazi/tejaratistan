@@ -7,12 +7,12 @@ function show_chat_func(){
 
 
 
-business_services=document.getElementById("business_services");
-seo_sem=document.getElementById("seo_sem");
+// business_services=document.getElementById("business_services");
+// seo_sem=document.getElementById("seo_sem");
 // marketing_services=document.getElementById("marketing_services");
 
 
-function select_service(){
-    alert("test");
-}
+// function select_service(){
+//     alert("test");
+// }
 

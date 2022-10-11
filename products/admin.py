@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product,Category,Vendors,Service,SubService
+from .models import Product,Category,Vendors,Service,SubService,Service_Media,SubService_Media
 # Register your models here.
 
 
@@ -31,3 +31,5 @@ class SubSerivceAdmin(admin.ModelAdmin):
 
 
     
+
+    # Service=("service","uploader","file","is_active") 

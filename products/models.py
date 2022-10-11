@@ -44,9 +44,10 @@ class Service_Media(models.Model):
     service = models.ForeignKey(Service,on_delete=models.SET_NULL,null=True)
     uploader=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     # title = models.CharField(max_length=150)
-    file =  models.FileField(upload_to='uploads/%Y-%m-%d')
+    file =  models.FileField(upload_to='uploads/%Y-%m-%d',unique=True)
     is_active=models.BooleanField(default=None,null=True)
      
+    # Service=("service","uploader","file","is_active") 
     def __str__(self): 
         return f"{self.file}"  
 
@@ -73,9 +74,10 @@ class SubService_Media(models.Model):
     service = models.ForeignKey(SubService,on_delete=models.SET_NULL,null=True)
     uploader=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     # title = models.CharField(max_length=150)
-    file =  models.FileField(upload_to='uploads/%Y-%m-%d')
+    file =  models.FileField(upload_to='uploads/%Y-%m-%d',unique=True)
     is_active=models.BooleanField(default=None,null=True)
-     
+    
+    # Service=("service","uploader","file","is_active") 
     def __str__(self): 
         return f"{self.file}" 
 
