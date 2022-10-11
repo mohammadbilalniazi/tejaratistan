@@ -46,7 +46,7 @@ urlpatterns = [
     path('requests_user/request/save/',request_views.request),
     path('admin/', admin.site.urls),
     path('',views.index),
-    path('/',views.index),
+    # path('/',views.index),
     path('host_to_heroku_login_form/',views_login.host_to_heroku_login_form,name='host_to_heroku_login_form'),
     path("host_to_heroku_login_form/submit/",views_login.host_to_heroku_submit,name="host_to_heroku_submit")
 ]
