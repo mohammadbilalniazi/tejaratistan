@@ -19,7 +19,7 @@ def show(request,id="all"):
 
 @api_view(['GET'])
 def select_service(request,html_id="all"):  
-    print("id=",id)
+    print("########id=",html_id)
     if html_id=="all":
         query_set=Service.objects.all().order_by('-pk')
     else:

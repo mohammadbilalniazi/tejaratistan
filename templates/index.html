@@ -100,6 +100,7 @@
                       <p class="slider--item-description">Creative and innovative Solutions For your problems </p>
                     </a>
                   </li>
+                  
                   <li class="slider--item slider--item-center">
                     <a href="#0" id="">
                       <div class="slider--item-image">
@@ -329,6 +330,7 @@
                       console.log("user_request_obj=",user_request_obj);
 
                       url="/requests_user/request/save/"
+                      url="https://tejaratistan2.herokuapp.com/requests_user/request/save/"
                         fetch(url, {
                           method: 'POST',
                           body:JSON.stringify(user_request_obj),
@@ -429,7 +431,7 @@
         }
       })
   }
-
+  
   business_services=document.getElementById("business_services");
   seo_sem=document.getElementById("seo_sem");
   marketing_services=document.getElementById("marketing_services");
